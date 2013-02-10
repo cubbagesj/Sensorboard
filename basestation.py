@@ -98,29 +98,5 @@ while True:
 
         cur.execute(names, values)
 
-    # Create an HTML document with the current readings
-    # do this by manually creating the html code
-    # 
-
-    curfile = open("webserver/index.html", "w")
-    curfile.write('<!DOCTYPE HTML PUBLIC " -//W3C//DTD HTML 4.0 Transitional//EN">\n')
-    curfile.write('<HTML> \n')
-    curfile.write('<HEAD>\n')
-    curfile.write('<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">\n')
-    curfile.write('</HEAD>\n')
-    curfile.write('<BODY LANG="en-US" DIR="LTR">\n')
-    curfile.write('<P ALIGN=CENTER><FONT SIZE=5 STYLE="font-size: 20pt"><B>Current Conditions</B></FONT></P>\n')
-    curfile.write('<P ALIGN=CENTER><B>')
-    curfile.write('%s  %s'% (values[0], values[1]))
-    curfile.write('</B></P>\n')
-    curfile.write('<P ALIGN=CENTER><BR><BR></P>\n')
-    for item in data.keys():
-        curfile.write('<P ALIGN=LEFT> \n')
-        curfile.write("%s %.2f \n" % (item, data[item]))
-        curfile.write('</P>\n')
-    curfile.write('</BODY>\n')
-    curfile.write('</HTML>\n')
-
-    curfile.close()
 
     time.sleep(300)
