@@ -1,10 +1,19 @@
 <!DOCTYPE html>
    <head>
-      <title>{{ title }}</title>
+      <title>Current Readings</title> 
    </head>
 
    <body>
-      <h1>Hello, World!</h1>
-      <h2>The date and time on the server is: {{ time }}</h2>
+      <h1>Current Readings for {{ date }} {{ time }} </h1>
+      <h2>Temperatures</h2>
+      <p>Outside : {{ outside }}<br \>
+      Master Bedroom : {{ masterbr }} <br \>
+      Basement : {{ basement }} <br \>
+      Humidity : {{ humidity }}</p>
+
+      <h2>Appliances</h2>
+      <p>Furnace: In: {{ furn_in }} Out: {{ furn_out }}<br \>
+          Water Heater: {{ waterhtr }}</p> 
+    
    </body>
 </html>
