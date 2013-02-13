@@ -23,7 +23,7 @@ daysFmt = mdates.DateFormatter('%H:%M')
 with con:
 
     # Get data from the past week
-    delta = datetime.timedelta(30)
+    delta = datetime.timedelta(2)
     past = datetime.datetime.now() - delta
 
     symbol = past.strftime("%Y-%m-%d")
@@ -54,6 +54,6 @@ with con:
  
 
     plt.grid('on')
-    plt.savefig('myfig')
+    plt.savefig('./static/humidity.png')
 #    plt.show()
 
