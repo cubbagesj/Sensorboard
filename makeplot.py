@@ -46,6 +46,10 @@ with con:
     ax = fig.add_subplot(111)
     ax.plot(xdata, ydata)
     fig.autofmt_xdate()
+ 
+    ax.set_ylabel('Humdity (%)')
+    ax.set_xlabel('Time')
+    ax.set_title('Humidity - last 48 hrs')
    
     ax.xaxis.set_major_locator(hours)
     ax.xaxis.set_major_formatter(daysFmt)
