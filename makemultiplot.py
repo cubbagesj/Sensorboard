@@ -12,17 +12,19 @@ import matplotlib.dates as mdates
 import sqlite3 as lite
 import sys
 
-con = lite.connect('/home/pi/Sensorboard/sensordb')
+# Open the data base 
+con = lite.connect('sensordb')
 
-
+# Setup the date label formatting
 hours = mdates.HourLocator(interval=4)
 minutes = mdates.MinuteLocator()
 
 daysFmt = mdates.DateFormatter('%H:%M')
 
 with con:
+    con.row_factory = lite.Row
 
-    # Get data from the past week
+    # Get all data from the past 2 days
     delta = datetime.timedelta(2)
     past = datetime.datetime.now() - delta
 
@@ -31,7 +33,7 @@ with con:
     t = (symbol,)
 
     cur = con.cursor()
-    cur.execute('SELECT date,time, humidity from readings where date>?', t)
+    cur.execute('SELECT date,time, Furn_Out from readings where date>?', t)
      
     data = cur.fetchall()
 
