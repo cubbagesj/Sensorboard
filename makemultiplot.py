@@ -13,7 +13,7 @@ import sqlite3 as lite
 import sys
 
 # Open the data base 
-con = lite.connect('sensordb')
+con = lite.connect('/home/pi/Sensorboard/sensordb')
 
 # Setup the date label formatting
 hours = mdates.HourLocator(interval=4)
@@ -23,8 +23,8 @@ daysFmt = mdates.DateFormatter('%H:%M')
 
 with con:
     con.row_factory = lite.Row
-
-    # Get all data from the past 2 days
+ 
+    # Get  data from the past 2 days
     delta = datetime.timedelta(2)
     past = datetime.datetime.now() - delta
 
@@ -33,33 +33,40 @@ with con:
     t = (symbol,)
 
     cur = con.cursor()
-    cur.execute('SELECT date,time, Furn_Out from readings where date>?', t)
-     
+    cur.execute('SELECT * from readings where date>?', t)
+    
+    # get all of the data into a big array
     data = cur.fetchall()
 
-    xdata = []
-    ydata = []
-    
-    for row in data:
-        xdata.append(datetime.datetime.strptime(row[0]+' '+row[1],"%Y-%m-%d %H:%M:%S"))
-        ydata.append(row[2]) 
+    # now try to make multiple plots
 
-    fig = plt.figure()
-    ax = fig.add_subplot(111)
-    ax.plot(xdata, ydata)
-    fig.autofmt_xdate()
+    plots = ["MasterBR", "Basement", "Furn_Out", "Humidity"]
+
+    for plot in plots:
+
+        xdata = []
+        ydata = []
+     
+        for row in data:
+            xdata.append(datetime.datetime.strptime(row["date"]+' '+row["time"],"%Y-%m-%d %H:%M:%S"))
+            ydata.append(row[plot]) 
+
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        ax.plot(xdata, ydata)
+        fig.autofmt_xdate()
  
-    ax.set_ylabel('Humdity (%)')
-    ax.set_xlabel('Time')
-    ax.set_title('Humidity - last 48 hrs')
+        ax.set_ylabel(plot)
+        ax.set_xlabel('Time')
+        ax.set_title(plot+' - last 48 hrs')
    
-    ax.xaxis.set_major_locator(hours)
-    ax.xaxis.set_major_formatter(daysFmt)
+        ax.xaxis.set_major_locator(hours)
+        ax.xaxis.set_major_formatter(daysFmt)
     #ax.xaxis.set_minor_locator(minutes)
 
  
 
-    plt.grid('on')
-    plt.savefig('/home/pi/Sensorboard/static/humidity.png')
-#    plt.show()
+        plt.grid('on')
+        plt.savefig('/home/pi/Sensorboard/static/'+plot+'.png')
+
 
