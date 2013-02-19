@@ -13,7 +13,7 @@ import sqlite3 as lite
 import sys
 
 # Open the data base 
-con = lite.connect('/home/pi/Sensorboard/sensordb')
+con = lite.connect('/home/sam/Sensorboard/sensordb')
 
 # Setup the date label formatting
 hours = mdates.HourLocator(interval=4)
@@ -67,6 +67,6 @@ with con:
  
 
         plt.grid('on')
-        plt.savefig('/home/pi/Sensorboard/static/'+plot+'.png')
+        plt.savefig('/home/sam/Sensorboard/static/'+plot+'.png')
 
 
