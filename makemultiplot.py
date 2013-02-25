@@ -40,7 +40,7 @@ with con:
 
     # now try to make multiple plots
 
-    plots = ["MasterBR", "Basement", "Furn_Out", "Humidity"]
+    plots = ["MasterBR", "Outside", "Basement", "Humidity"]
 
     for plot in plots:
 

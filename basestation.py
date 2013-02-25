@@ -23,7 +23,7 @@ import serial, time, os, sys
 import sqlite3 as lite
 
 
-ser = serial.Serial(port='/dev/ttyUSB0',timeout=2) 
+ser = serial.Serial(port='/dev/ttyUSB1',timeout=2) 
 
 data = {}
 
