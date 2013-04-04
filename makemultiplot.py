@@ -13,7 +13,7 @@ import sqlite3 as lite
 import sys
 
 # Open the data base 
-con = lite.connect('/home/sam/Sensorboard/sensordb')
+con = lite.connect('/home/pi/Sensorboard/sensordb')
 
 # Setup the date label formatting
 hours = mdates.HourLocator(interval=4)
@@ -25,7 +25,7 @@ with con:
     con.row_factory = lite.Row
  
     # Get  data from the past 2 days
-    delta = datetime.timedelta(2)
+    delta = datetime.timedelta(4)
     past = datetime.datetime.now() - delta
 
     symbol = past.strftime("%Y-%m-%d")
@@ -41,6 +41,7 @@ with con:
     # now try to make multiple plots
 
     plots = ["MasterBR", "Outside", "Basement", "Humidity"]
+    #plots = ["MasterBR"]
 
     for plot in plots:
 
@@ -67,6 +68,6 @@ with con:
  
 
         plt.grid('on')
-        plt.savefig('/home/sam/Sensorboard/static/'+plot+'.png')
+        plt.savefig('/home/pi/Sensorboard/static/'+plot+'.png')
 
 
