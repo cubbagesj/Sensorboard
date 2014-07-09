@@ -1,24 +1,56 @@
 <!DOCTYPE html>
+
+<html>
    <head>
-      <title>Current Readings</title> 
+      <meta charset="utf-8">
+      <title>Current Readings</title>
+      <style>
+          body {
+                 background-color: #faf2e4;
+                 margin: 0 15%;
+                 font-family: sans-serif;
+          }
+ 
+          h1 {
+                 text-align: center;
+                 font-family: serif;
+                 font-weight: normal;
+                 text-transform: uppercase;
+                 border-bottom: 1px solid #57b1dc;
+                 margin-top: 30px;
+          }
+
+          h2 {
+                 color: #d1633c;
+                 font-size: 1 em;
+          }
+   </style>
+ 
    </head>
 
    <body>
       <h1>Current Readings for {{ date }} {{ time }} </h1>
       <h2>Temperatures</h2>
-      <p>Outside : {{ outside }}<br \>
-      Master Bedroom : {{ masterbr }} <br \>
-      Basement : {{ basement }} <br \>
+      <p>Outside : {{ outside }}</p>
+      Master Bedroom : {{ masterbr }} </p>
+      Basement : {{ basement }} </p>
       Humidity : {{ humidity }}</p>
 
       <h2>Appliances</h2>
-      <p>Furnace: In: {{ furn_in }} Out: {{ furn_out }}<br \>
+      <p>Furnace: <br>In: {{ furn_in }} Out: {{ furn_out }}</p>
           Water Heater: {{ waterhtr }}</p> 
       <h2> Graphs </h2>
-      <p> <img src="/static/Humidity.png" align=left width=509 height=382 BORDER=0> 
-      <p> <img src="/static/MasterBR.png" align=left width=509 height=382 BORDER=0> 
-      <p> <img src="/static/Basement.png" align=left width=509 height=382 BORDER=0> 
-      <p> <img src="/static/Outside.png" align=left width=509 height=382 BORDER=0> 
-</p>    
+      <figure>
+	 <img src="/static/Humidity.png" align=left width=509 height=382 BORDER=0>
+      </figure> 
+      <figure>
+         <img src="/static/MasterBR.png" align=left width=509 height=382 BORDER=0> 
+      </figure>
+      <figure>
+         <img src="/static/Basement.png" align=left width=509 height=382 BORDER=0> 
+      </figure>
+      <figure>
+         <img src="/static/Outside.png" align=left width=509 height=382 BORDER=0> 
+      </figure>    
    </body>
 </html>
